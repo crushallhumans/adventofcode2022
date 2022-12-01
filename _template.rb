@@ -88,7 +88,7 @@ end
 
 $DEBUG = false
 $PROBLEM_TEST = false
-if ARGV[0] == 'DEBUG'
+if ARGV[0] == 'DEBUG' || ARGV[1] == 'DEBUG'
     $DEBUG = true
 end
 if ARGV[0] == 'PUZZLE'
