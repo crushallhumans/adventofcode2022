@@ -1,0 +1,10 @@
+AllCops:
+  DisabledByDefault: true
+  NewCops: enable
+  TargetRubyVersion: 3.1
+
+Metrics/AbcSize:
+  Max: 100
+
+Metrics/MethodLength:
+  Max: 400
