@@ -38,10 +38,8 @@ def basic_action(param_set, step_two = false)
                 num_contains += 1
             end
         end
-#        ppd [ii,pair_sets]
         elf_assignments.append(pair_sets)
     end
-#    ppd elf_assignments
     num_contains
 end
 

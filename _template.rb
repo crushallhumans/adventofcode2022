@@ -3,8 +3,15 @@
 # puzzle N
 # 12/N/2022
 
-require "test/unit"
-require "pp"
+require 'test/unit'
+require 'pp'
+require 'set'
+
+def ppd(var)
+    if $DEBUG 
+        pp var
+    end
+end
 
 
 
