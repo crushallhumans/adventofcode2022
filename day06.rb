@@ -1,7 +1,7 @@
 # adventofcode 2022
 # crushallhumans
-# puzzle N
-# 12/N/2022
+# puzzle 6
+# 12/6/2022
 
 require 'test/unit'
 require 'pp'
