@@ -116,69 +116,40 @@ def basic_action(param_set, step_two = false)
   visible
 end
 
+
+def calc_sight(trees,top,bottom,fixed,fixed_pos,sight,note)
+  s = 0
+  stepp = bottom == 0 ? -1 : 1
+
+  ppd [note,top,bottom,fixed,fixed_pos,stepp]
+  top.step(bottom,stepp).each do |f|
+    y = (fixed_pos == 'y') ? fixed : f
+    x = (fixed_pos == 'x') ? fixed : f
+    t = trees[y,x].to_i
+    s += 1
+    ppd [f,y,x,t,sight]
+    if t >= sight
+      break
+    end
+  end
+  s
+end
+
 def calculate_scenic(trees, x, y, trees_w, trees_h)
+  ppd [x,y]
   sight = trees[y,x].to_i
   scenic = []
-  yup = y-1
-  ydn = y+1
-  xlt = x-1
-  xrt = x+1
-  #up
-  d = $DEBUG
-  $DEBUG = false
-  ppd "up"
-  s = 0
-  yup.downto 0 do |yc|
-    t = trees[yc,x].to_i
-    ppd [yc,x,t,sight]
-    s += 1
-    if t >= sight
-      break
-    end
-  end
-  scenic.append(s)
-  s = 0
-  #right
-  ppd "right"
-  xrt.upto trees_w-1 do |xc|
-    t = trees[y,xc].to_i
-    ppd [y,xc,t,sight]
-    s += 1
-    if t >= sight
-      break
-    end
-  end
-  scenic.append(s)
-  s = 0
-  #down
-  ppd "down"
-  ydn.upto trees_h-1 do |yc|
-    t = trees[yc,x].to_i
-    ppd [yc,x,t,sight]
-    s += 1
-    if t >= sight
-      break
-    end
-  end
-  scenic.append(s)
-  s = 0
-  #left
-  ppd "left"
-  xlt.downto 0 do |xc|
-    t = trees[y,xc].to_i
-    ppd [y,xc,t,sight]
-    s += 1
-    if t >= sight
-      break
-    end
-  end
-  scenic.append(s)
-  s = 0
-  if scenic.reduce(:*) > 100
-    $DEBUG = true
+  w = trees_w - 1
+  h = trees_h - 1
+  [
+    [y-1,0,x,'x',sight,"up"],
+    [y+1,h,x,'x',sight,"down"],
+    [x-1,0,y,'y',sight,"left"],
+    [x+1,w,y,'y',sight,"right"],
+  ].each do |a|
+    scenic.append(calc_sight(trees,a[0],a[1],a[2],a[3],a[4],a[5]))
   end
   ppd [[y,x],sight,scenic,scenic.reduce(:*)]
-  $DEBUG = d
   scenic.reduce(:*)
 end
 
