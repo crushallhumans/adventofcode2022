@@ -204,10 +204,6 @@ def calculate_scenic(trees, x, y, trees_w, trees_h)
   # end
   # scenic.append(s)
   # s = 0
-  d = $DEBUG
-  if scenic.reduce(:*) > 100
-    $DEBUG = true
-  end
   ppd [[y,x],sight,scenic,scenic.reduce(:*)]
   scenic.reduce(:*)
 end
