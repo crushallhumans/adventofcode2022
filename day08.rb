@@ -149,6 +149,65 @@ def calculate_scenic(trees, x, y, trees_w, trees_h)
   ].each do |a|
     scenic.append(calc_sight(trees,a[0],a[1],a[2],a[3],a[4],a[5]))
   end
+  # yup = y-1
+  # ydn = y+1
+  # xlt = x-1
+  # xrt = x+1
+  # #up
+  # d = $DEBUG
+  # $DEBUG = false
+  # ppd "up"
+  # s = 0
+  # yup.downto 0 do |yc|
+  #   t = trees[yc,x].to_i
+  #   ppd [yc,x,t,sight]
+  #   s += 1
+  #   if t >= sight
+  #     break
+  #   end
+  # end
+  # scenic.append(s)
+  # s = 0
+  # #right
+  # ppd "right"
+  # xrt.upto trees_w-1 do |xc|
+  #   t = trees[y,xc].to_i
+  #   ppd [y,xc,t,sight]
+  #   s += 1
+  #   if t >= sight
+  #     break
+  #   end
+  # end
+  # scenic.append(s)
+  # s = 0
+  # #down
+  # ppd "down"
+  # ydn.upto trees_h-1 do |yc|
+  #   t = trees[yc,x].to_i
+  #   ppd [yc,x,t,sight]
+  #   s += 1
+  #   if t >= sight
+  #     break
+  #   end
+  # end
+  # scenic.append(s)
+  # s = 0
+  # #left
+  # ppd "left"
+  # xlt.downto 0 do |xc|
+  #   t = trees[y,xc].to_i
+  #   ppd [y,xc,t,sight]
+  #   s += 1
+  #   if t >= sight
+  #     break
+  #   end
+  # end
+  # scenic.append(s)
+  # s = 0
+  d = $DEBUG
+  if scenic.reduce(:*) > 100
+    $DEBUG = true
+  end
   ppd [[y,x],sight,scenic,scenic.reduce(:*)]
   scenic.reduce(:*)
 end
